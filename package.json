@@ -1,0 +1,56 @@
+{
+  "name": "autofvmc-ai",
+  "private": true,
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "server": "node server/bacnetServer.cjs",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "web:build": "npm run build",
+    "web:preview": "vite preview --host 0.0.0.0",
+    "desktop:dev": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && cross-env AUTOFVMC_DEV_URL=http://127.0.0.1:5173 electron electron/main.cjs\"",
+    "desktop:build": "npm run build && electron-builder --dir",
+    "desktop:installer": "npm run build && electron-builder --win nsis"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "bacstack": "^0.0.1-beta.14",
+    "lucide-react": "latest",
+    "pdf-parse": "^2.4.5",
+    "react": "latest",
+    "react-dom": "latest",
+    "typescript": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "concurrently": "^10.0.5",
+    "cross-env": "^10.0.0",
+    "electron": "^44.5.1",
+    "electron-builder": "^26.15.3",
+    "vite-plugin-pwa": "^2.0.0",
+    "wait-on": "^9.0.1"
+  },
+  "build": {
+    "appId": "com.autofvmc.ai",
+    "productName": "AutoFVMC AI",
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "server/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
