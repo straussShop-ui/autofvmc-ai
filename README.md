@@ -45,7 +45,7 @@ Create the Windows package with:
 npm run desktop:build
 ```
 
-The portable runnable app is generated at `dist/win-unpacked/AutoFVMC AI.exe`. The Electron window starts the local BACnet bridge automatically. Connect the laptop to the controller network over RJ45 before running discovery. Live writes remain disabled unless `ALLOW_LIVE_WRITES=true` is explicitly set. An NSIS installer can be attempted with `npm run desktop:installer`; on locked-down Windows machines, distribute the portable `win-unpacked` folder instead.
+The portable runnable app is generated at `dist/win-unpacked/AutoFVMC AI.exe`. The Electron window starts the local BACnet bridge automatically. Connect the laptop to the controller network over RJ45 before running discovery. Live writes remain disabled unless `ALLOW_LIVE_WRITES=true` is explicitly set. An NSIS installer can be attempted with `npm run desktop:installer`; on locked-down Windows machines, distribute the portable `win-unpacked` folder instead. This unsigned build may be blocked by Microsoft Defender Exploit Guard on managed devices. Ask your IT team to review and approve/allowlist it; do not disable organization security controls.
 
 ## Web deployment
 
